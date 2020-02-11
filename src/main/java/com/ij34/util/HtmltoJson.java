@@ -1,5 +1,8 @@
 package com.ij34.util;
-
+/**
+* @author 作者
+* 类说明
+*/
 public class HtmltoJson {
 
 	public  String getJsonStrbyHtml(String html) {

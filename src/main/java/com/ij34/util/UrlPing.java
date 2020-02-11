@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
-
+/**
+* @author 作者
+* 类说明
+*/
 public class UrlPing {
 
     public boolean isPing(String url){

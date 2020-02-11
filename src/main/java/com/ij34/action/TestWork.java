@@ -12,18 +12,22 @@ import com.ij34.model.City;
 import com.ij34.util.HtmltoJson;
 import com.ij34.util.UrlPing;
 import com.ij34.util.Urltohtml;
-
-public class testWork {
-   private static final String url="https://ncov.dxy.cn/ncovh5/view/pneumonia_peopleapp?from=timeline&isappinstalled=0";
-   //下面这些当作城市处理
-   private static final List<String> provincelist=getprovinceList();
+/**
+* @author 作者
+* 类说明
+*/
+public class TestWork {
+   private static final String URL="https://ncov.dxy.cn/ncovh5/view/pneumonia_peopleapp?from=timeline&isappinstalled=0";
+   /**
+    * 下面这些当作城市处理*/
+   private static final List<String> PROVINCELIST=getprovinceList();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		 UrlPing up=new UrlPing();
 		 Urltohtml ss=new Urltohtml();
 		 HtmltoJson hj =new HtmltoJson();
-		 if(up.isPing(url)){
-				String htmlStr=ss.getDocumentHTML(url);
+		 if(up.isPing(URL)){
+				String htmlStr=ss.getDocumentHtml(URL);
 				if(htmlStr!=null){
 						String jsonStr=hj.getJsonStrbyHtml(htmlStr);
 //						System.out.println(jsonStr);
@@ -46,9 +50,12 @@ public class testWork {
 							e.printStackTrace();
 						}
 						System.out.println("排名\t"+"城市\t"+"确诊人数\t"+"省份");
-						int rank=0;//排名
-						int preCount=-1;//前一个数量
-						int sameCount=0;//同名次的个数
+						//排名
+						int rank=0;
+						//前一个数量
+						int preCount=-1;
+						//同名次的个数
+						int sameCount=0;
 						for(int i=0;i<citys.size();i++){
 							City city =citys.get(i);
 							if(city.getCount()==preCount){
@@ -76,7 +83,7 @@ public class testWork {
 				}
 //				System.out.println("-------------------------------------");
 		 }else{
-			 System.err.println("Ping不通"+url);
+			 System.err.println("Ping不通"+URL);
 		 }
 	}
 	
@@ -89,7 +96,7 @@ public class testWork {
 			JSONObject provinceObject = provinceArray.getJSONObject(i);
 			String provinceName =provinceObject.getString("provinceName");
 			String provinceShortName =provinceObject.getString("provinceShortName");
-			if(provincelist.contains(provinceShortName)){
+			if(PROVINCELIST.contains(provinceShortName)){
 				int count=provinceObject.getIntValue("confirmedCount");
 				result.add(new City(provinceShortName, count, provinceName));
 			}else{
@@ -97,7 +104,7 @@ public class testWork {
 				for (int j = 0; j < citys.size(); j++) {
 					JSONObject cityObject = citys.getJSONObject(j);
 					String cityName =cityObject.getString("cityName");
-					if(!cityName.equals("待明确地区")){
+					if(!"待明确地区".equals(cityName)){
 						int confirmedCount=cityObject.getIntValue("confirmedCount");
 						result.add(new City(cityName, confirmedCount, provinceName));
 					}
@@ -110,7 +117,8 @@ public class testWork {
 	 
   }
   
-  //下面这些当作城市处理的行政区
+  /**
+   * 下面这些当作城市处理的行政区*/
   private static List<String> getprovinceList(){
 	  ArrayList<String> list = new ArrayList<String>();
 	  list.add("香港");

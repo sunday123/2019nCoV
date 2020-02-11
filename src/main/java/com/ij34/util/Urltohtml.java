@@ -6,10 +6,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+/**
+* @author 作者
+* 类说明
+*/
 public class Urltohtml {
 
-    public String getDocumentHTML(String url){
+    public String getDocumentHtml(String url){
 
         Document doc = null;
 		try {

@@ -1,5 +1,8 @@
 package com.ij34.model;
-
+/**
+* @author 作者
+* 类说明
+*/
 public class City implements Comparable<City>{
 	
 
@@ -38,14 +41,18 @@ public class City implements Comparable<City>{
 	
 	@Override
 	public String toString() {
-		return name + "\t\t" + count + "\t" + province;
+		return name + "\t" + count + "\t" + province;
 	}
-
+    @Override
 	public int compareTo(City o) {
 		// TODO Auto-generated method stub
-        if (this.count > o.count) return -1;
-        else if (this.count < o.count) return 1;
-        else return 0;
+        if (this.count > o.count){
+        	 return -1;
+        }else if (this.count < o.count){
+        	 return 1;
+        }else{
+        	 return 0;
+        }
         
     
 	}
